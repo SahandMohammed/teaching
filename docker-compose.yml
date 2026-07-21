@@ -1,0 +1,23 @@
+services:
+  client:
+    image: ghcr.io/sahandmohammed/teaching-client:latest
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: always
+
+  server:
+    image: ghcr.io/sahandmohammed/teaching-server:latest
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: always

@@ -1,5 +1,5 @@
 # Stage 1: deps — install production-only dependencies
-FROM node:20-alpine AS deps
+FROM node:22-alpine AS deps
 WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY package.json pnpm-lock.yaml* ./
@@ -7,7 +7,7 @@ COPY package.json pnpm-lock.yaml* ./
 RUN pnpm i --frozen-lockfile --prod
 
 # Stage 2: runner
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
